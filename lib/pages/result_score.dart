@@ -1,4 +1,5 @@
 import 'package:election_exit_poll_620710681/models/candidate2.dart';
+import 'package:election_exit_poll_620710681/services/api.dart';
 import 'package:flutter/material.dart';
 
 class result_score extends StatefulWidget {
@@ -14,7 +15,7 @@ class result_score extends StatefulWidget {
 
 
 class _result_scoreState extends State<result_score> {
-
+  late Future<List<candidate2>> _futureCandidate;
   @override
   void initState() {
     super.initState();
@@ -53,30 +54,28 @@ class _result_scoreState extends State<result_score> {
                 elevation: 5.0,
                 shadowColor: Colors.black.withOpacity(0.2),
                 color: Colors.white.withOpacity(0.5),
-                child: InkWell(
-                  onTap: () => _handleClickCandidate(candidate),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        width: 50.0,
-                        height: 50.0,
-                        color: Colors.green,
-                        child: Center(
-                          child: Text(
-                            '${candidate.number}',
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      width: 50.0,
+                      height: 50.0,
+                      color: Colors.green,
+                      child: Center(
                         child: Text(
-                            '${candidate.title} ${candidate.firstName} ${candidate.lastName}',
-                            style: Theme.of(context).textTheme.bodyText1
+                          '${candidate.number}',
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                          '${candidate.title} ${candidate.firstName} ${candidate.lastName}',
+                          style: Theme.of(context).textTheme.bodyText1
+                      ),
+                    ),
+                    //Text('${candidate.score}'),
+                  ],
                 ),
               );
             },
